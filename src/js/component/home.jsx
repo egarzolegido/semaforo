@@ -1,26 +1,58 @@
-import React from "react";
+import React, { Component } from "react";
 
 //include images into your bundle
 import rigoImage from "../../img/rigo-baby.jpg";
 
 //create your first component
-const Home = () => {
-	return (
-		<div>
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working...
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
-		</div>
-	);
-};
+class TrafficLight extends Component {
+	constructor() {
+		super();
+		this.state = {
+			estadoRoja: "apagada",
+			estadoAmarilla: "apagada",
+			estadoVerde: "apagada",
+		};
+	}
 
-export default Home;
+	render() {
+		return (
+			<div>
+				<div id="barra"></div>
+				<div id="semaforo">
+					<div
+						className="luz roja"
+						id={this.state.estadoRoja}
+						onClick={() =>
+							this.setState({
+								estadoRoja: "encendida",
+								estadoAmarilla: "apagada",
+								estadoVerde: "apagada",
+							})
+						}></div>
+					<div
+						className="luz amarilla"
+						id={this.state.estadoAmarilla}
+						onClick={() =>
+							this.setState({
+								estadoRoja: "apagada",
+								estadoAmarilla: "encendida",
+								estadoVerde: "apagada",
+							})
+						}></div>
+					<div
+						className="luz verde"
+						id={this.state.estadoVerde}
+						onClick={() =>
+							this.setState({
+								estadoRoja: "apagada",
+								estadoAmarilla: "apagada",
+								estadoVerde: "encendida",
+							})
+						}></div>
+				</div>
+			</div>
+		);
+	}
+}
+
+export default TrafficLight;
